@@ -13,6 +13,7 @@ class BmiCalculator extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
