@@ -31,56 +31,66 @@ class CalculatorView extends StatelessWidget {
                 title: 'Calculator',
               ),
               body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    MultiColorLinearProgressIndicator(
-                      progressValue:
-                          CalculatorCubit.get(context)!.progressValue,
-                    ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    BmiResultContainer(
-                      bmiResult: CalculatorCubit.get(context)!.bmiResult,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          AgeWeightContainer(
-                            controller:
-                                CalculatorCubit.get(context)!.ageController,
-                            hintText: 'Age',
-                          ),
-                          AgeWeightContainer(
-                            controller:
-                                CalculatorCubit.get(context)!.weightController,
-                            hintText: 'Weight',
-                          ),
-                        ],
+                child: Form(
+                  key: CalculatorCubit.get(context)!.formKey,
+                  child: Column(
+                    children: [
+                      MultiColorLinearProgressIndicator(
+                        progressValue:
+                            CalculatorCubit.get(context)!.progressValue,
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: HeightSliderContainer(),
-                    ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: CustomButtonLarge(
-                          text: 'Calculate',
-                          color: kPrimaryKey,
-                          textColor: Colors.white,
-                          function: () {
-                            CalculatorCubit.get(context)!.normalize();
-                            print(CalculatorCubit.get(context)!.progressValue);
-                            CalculatorCubit.get(context)!.calculateBmi();
-                          }),
-                    )
-                  ],
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      BmiResultContainer(
+                        bmiResult: CalculatorCubit.get(context)!.bmiResult,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AgeWeightContainer(
+                              controller:
+                                  CalculatorCubit.get(context)!.ageController,
+                              hintText: 'Age',
+                            ),
+                            AgeWeightContainer(
+                              controller: CalculatorCubit.get(context)!
+                                  .weightController,
+                              hintText: 'Weight',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: HeightSliderContainer(),
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: CustomButtonLarge(
+                            text: 'Calculate',
+                            color: kPrimaryKey,
+                            textColor: Colors.white,
+                            function: () {
+                              if (CalculatorCubit.get(context)!
+                                  .formKey
+                                  .currentState!
+                                  .validate()) {
+                                CalculatorCubit.get(context)!.normalize();
+                                print(CalculatorCubit.get(context)!
+                                    .progressValue);
+                                CalculatorCubit.get(context)!.calculateBmi();
+                                CalculatorCubit.get(context)!.saveBmiData();
+                              }
+                            }),
+                      )
+                    ],
+                  ),
                 ),
               ));
         },

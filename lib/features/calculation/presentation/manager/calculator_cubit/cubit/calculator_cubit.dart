@@ -16,6 +16,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   HomeRepo homeRepo;
   TextEditingController ageController = TextEditingController();
   TextEditingController weightController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
 
   double height = 120;
   var bmiResult = 0.0;
@@ -42,15 +43,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     progressValue = (bmiResult - min) / (max - min);
   }
 
-  Future<void> saveBmiData({
-    required String dateTime,
-    required double height,
-    required double weight,
-    required double age,
-  }) async {
+  Future<void> saveBmiData() async {
     emit(SaveBmiDataLaodingState());
+    double weight = double.parse(weightController.text);
+    double age = double.parse(ageController.text);
+
     var saveBmiData = await homeRepo.saveBmiData(
-      dateTime,
+      DateTime.now().toString(),
       height,
       weight,
       age,
