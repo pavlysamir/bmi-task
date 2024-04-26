@@ -10,15 +10,6 @@ class CustomAppbareWithTitle extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: kPrimaryKey,
-        ),
-      ),
       title: Text(
         title,
         style: Theme.of(context).textTheme.displaySmall,

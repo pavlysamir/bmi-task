@@ -24,7 +24,7 @@ class AuthView extends StatelessWidget {
         listener: (context, state) {
           if (state is RegisterCreateUserSuccessState) {
             customGoAndDeleteNavigate(
-                context: context, path: AppRouter.kHomeView);
+                context: context, path: AppRouter.kCalculatorView);
           }
         },
         builder: (context, state) {

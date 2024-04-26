@@ -1,5 +1,6 @@
 import 'package:bmi_task/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class Styles {
@@ -40,6 +41,9 @@ abstract class Styles {
   // }
   static TextStyle textStyle12Black = const TextStyle(
       fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black);
+
+  static TextStyle textStyle10Black = TextStyle(
+      fontSize: 10.sp, fontWeight: FontWeight.bold, color: Colors.black);
   static TextStyle textStyle12White = const TextStyle(
       fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
   static TextStyle textStyle12BoldGrey = const TextStyle(
@@ -84,4 +88,6 @@ abstract class Styles {
       fontSize: 16, fontWeight: FontWeight.bold, color: kBlackColor);
   static TextStyle textStyle16White = const TextStyle(
       fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle textStyle16Orange = TextStyle(
+      fontSize: 16.sp, fontWeight: FontWeight.bold, color: kPrimaryKey);
 }
