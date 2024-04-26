@@ -36,7 +36,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   static CalculatorCubit? get(context) => BlocProvider.of(context);
   double progressValue = 0;
 
-  void normalize({double min = 0, double max = 1000}) {
+  void normalize({double min = 0, double max = 100}) {
     // Ensure the value is within the range
     bmiResult = bmiResult.clamp(min, max);
 

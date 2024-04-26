@@ -13,109 +13,105 @@ class MultiColorLinearProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          // Background indicator with multiple colors
-          Container(
-              height: 70,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Underweight',
-                            style: Styles.textStyle12Black,
-                          ),
-                          Expanded(
-                            child: Container(
-                              color: kPrimaryKey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Normal',
-                            style: Styles.textStyle12Black,
-                          ),
-                          Expanded(
-                            child: Container(
-                              color: kGreen,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'OverWeight',
-                            style: Styles.textStyle12Black,
-                          ),
-                          Expanded(
-                            child: Container(
-                              color: kSecondaryKey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Obesity',
-                            style: Styles.textStyle12Black,
-                          ),
-                          Expanded(
-                            child: Container(
-                              color: kPoppingsRedColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )),
-          Positioned.fill(
-            child: LinearProgressIndicator(
-              value: progressValue,
-              backgroundColor:
-                  Colors.transparent, // Make background transparent
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                  Colors.transparent), // Make progress bar transparent
+    return Stack(
+      children: [
+        // Background indicator with multiple colors
+        Container(
+            height: 70,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(25),
             ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Underweight',
+                          style: Styles.textStyle12Black,
+                        ),
+                        Expanded(
+                          child: Container(
+                            color: kPrimaryKey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Normal',
+                          style: Styles.textStyle12Black,
+                        ),
+                        Expanded(
+                          child: Container(
+                            color: kGreen,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'OverWeight',
+                          style: Styles.textStyle12Black,
+                        ),
+                        Expanded(
+                          child: Container(
+                            color: kSecondaryKey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Obesity',
+                          style: Styles.textStyle12Black,
+                        ),
+                        Expanded(
+                          child: Container(
+                            color: kPoppingsRedColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )),
+        Positioned.fill(
+          child: LinearProgressIndicator(
+            value: progressValue,
+            backgroundColor: Colors.transparent, // Make background transparent
+            valueColor: const AlwaysStoppedAnimation<Color>(
+                Colors.transparent), // Make progress bar transparent
           ),
+        ),
 
-          // Custom arrow indicator
-          Positioned(
-            left: calculateArrowPosition(progressValue, context),
-            bottom: 0,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: Icon(
-                Icons.arrow_upward_rounded,
-                color: Colors.white,
-                size: 50.w,
-              ),
+        // Custom arrow indicator
+        Positioned(
+          left: calculateArrowPosition(progressValue, context),
+          bottom: 0,
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            child: Icon(
+              Icons.arrow_upward_rounded,
+              color: Colors.white,
+              size: 50.w,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
