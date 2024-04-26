@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:bmi_task/features/calculation/data/home_repo/home_repo.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -35,7 +36,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   static CalculatorCubit? get(context) => BlocProvider.of(context);
   double progressValue = 0;
 
-  void normalize({double min = 0, double max = 100}) {
+  void normalize({double min = 0, double max = 1000}) {
     // Ensure the value is within the range
     bmiResult = bmiResult.clamp(min, max);
 
@@ -58,6 +59,19 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       emit(SaveBmiDataErrorState(failure.messege));
     }, (r) {
       emit(SaveBmiDataSuccessState());
+    });
+  }
+
+  Future<void> signOut() async {
+    emit(HomeSignOutUserLoading());
+    var signOut = await homeRepo.signOut();
+    signOut.fold((failure) {
+      emit(HomeSignOutUserError(failure.messege));
+      if (kDebugMode) {
+        print(failure.messege);
+      }
+    }, (right) {
+      emit(HomeSignOutUserSuccess());
     });
   }
 }

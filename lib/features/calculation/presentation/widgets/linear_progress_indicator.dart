@@ -119,13 +119,10 @@ class MultiColorLinearProgressIndicator extends StatelessWidget {
     );
   }
 
-  // Calculate the position of the arrow based on the progress value
   double calculateArrowPosition(double progress, BuildContext context) {
-    // Calculate the width of the container
     double containerWidth = MediaQuery.of(context).size.width;
 
     // Calculate the position of the arrow based on the progress value
-    return containerWidth * progress -
-        25.w; // 12 is the half width of the arrow icon
+    return containerWidth * progress - 10.w;
   }
 }

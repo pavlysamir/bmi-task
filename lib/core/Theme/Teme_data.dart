@@ -7,13 +7,20 @@ class AppTheme {
     cardColor: Colors.white,
 
     shadowColor: Colors.black.withOpacity(0.2),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+
+    navigationBarTheme: const NavigationBarThemeData(
+      surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
-      unselectedItemColor: Colors.grey,
-      selectedItemColor: kPrimaryKey,
+      indicatorColor: kPrimaryKey,
       elevation: 0.0,
-      type: BottomNavigationBarType.fixed,
     ),
+    // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    //   backgroundColor: Colors.white,
+    //   unselectedItemColor: Colors.grey,
+    //   selectedItemColor: kPrimaryKey,
+    //   elevation: 0.0,
+    //   type: BottomNavigationBarType.fixed,
+    // ),
     scaffoldBackgroundColor: Colors.white,
     primaryColor: kPrimaryKey, // Change primary color as needed
     // Change accent color as needed

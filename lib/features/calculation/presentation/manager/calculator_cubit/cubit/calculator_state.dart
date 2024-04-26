@@ -18,3 +18,25 @@ final class SaveBmiDataErrorState extends CalculatorState {
 
   SaveBmiDataErrorState(this.error);
 }
+
+final class HomeSignOutUserLoading extends CalculatorState {}
+
+final class HomeSignOutUserSuccess extends CalculatorState {}
+
+final class HomeSignOutUserError extends CalculatorState {
+  late final String? error;
+
+  HomeSignOutUserError(this.error);
+}
+
+final class HomegetUserNameLoading extends CalculatorState {}
+
+final class HomegetUserNameSuccess extends CalculatorState {
+  final String? name;
+  HomegetUserNameSuccess(this.name);
+}
+
+final class HomegetUserNameError extends CalculatorState {
+  late final String? error;
+  HomegetUserNameError(this.error);
+}
