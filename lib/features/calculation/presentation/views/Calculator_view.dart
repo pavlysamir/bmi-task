@@ -1,6 +1,8 @@
 import 'package:bmi_task/constants.dart';
+import 'package:bmi_task/core/utils/service_locator.dart';
 import 'package:bmi_task/core/widgets/Custom_AppBar_with_title.dart';
 import 'package:bmi_task/core/widgets/custom_button_large.dart';
+import 'package:bmi_task/features/calculation/data/home_repo/home_repo.dart';
 import 'package:bmi_task/features/calculation/presentation/manager/calculator_cubit/cubit/calculator_cubit.dart';
 import 'package:bmi_task/features/calculation/presentation/widgets/age_weight_container.dart';
 import 'package:bmi_task/features/calculation/presentation/widgets/bmi_result_container.dart';
@@ -16,7 +18,9 @@ class CalculatorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CalculatorCubit(),
+      create: (context) => CalculatorCubit(
+        homeRepo: getIt.get<HomeRepo>(),
+      ),
       child: BlocConsumer<CalculatorCubit, CalculatorState>(
         listener: (context, state) {
           // TODO: implement listener

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:bmi_task/features/calculation/data/home_repo/home_repo.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +9,11 @@ import 'package:meta/meta.dart';
 part 'calculator_state.dart';
 
 class CalculatorCubit extends Cubit<CalculatorState> {
-  CalculatorCubit() : super(CalculatorInitial());
+  CalculatorCubit({
+    required this.homeRepo,
+  }) : super(CalculatorInitial());
+
+  HomeRepo homeRepo;
   TextEditingController ageController = TextEditingController();
   TextEditingController weightController = TextEditingController();
 
@@ -35,5 +40,25 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
     // Normalize the value to a range of 0 to 1
     progressValue = (bmiResult - min) / (max - min);
+  }
+
+  Future<void> saveBmiData({
+    required String dateTime,
+    required double height,
+    required double weight,
+    required double age,
+  }) async {
+    emit(SaveBmiDataLaodingState());
+    var saveBmiData = await homeRepo.saveBmiData(
+      dateTime,
+      height,
+      weight,
+      age,
+    );
+    saveBmiData.fold((failure) {
+      emit(SaveBmiDataErrorState(failure.messege));
+    }, (r) {
+      emit(SaveBmiDataSuccessState());
+    });
   }
 }
